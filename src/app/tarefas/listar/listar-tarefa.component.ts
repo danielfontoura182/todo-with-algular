@@ -18,4 +18,19 @@ export class ListarTarefaComponent implements OnInit {
   listarTodos() {
     return this.tarefaService.listarTodos();
   }
+
+  remover($event: any, id: any, nome: any): void {
+    $event.preventDefault();
+    if (confirm(`Deseja remover a tarefa "${nome}"?`)) {
+      this.tarefaService.remover(id);
+      this.tarefas = this.listarTodos();
+    }
+  }
+
+  alterarStatus(id: any, nome: any): void {
+    if (confirm(`Deseja concluir a tarefa "${nome}"?`)) {
+      this.tarefaService.alterarStatus(id);
+      this.tarefas = this.listarTodos();
+    }
+  }
 }
