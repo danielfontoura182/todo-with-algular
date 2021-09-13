@@ -1,4 +1,3 @@
-import { TransitiveCompileNgModuleMetadata } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Tarefa } from '.';
 
@@ -27,9 +26,9 @@ export class TarefaService {
 
   atualizar(tarefa: Tarefa): void {
     const tarefas = this.listarTodos();
-    tarefas.forEach((t) => {
+    tarefas.forEach((t, index, obj) => {
       if (t.id === tarefa.id) {
-        t = tarefa;
+        obj[index] = tarefa;
       }
     });
     localStorage['tarefas'] = JSON.stringify(tarefas);
